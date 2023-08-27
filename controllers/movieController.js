@@ -23,7 +23,7 @@ router.route("/").get((req, res) => {
         });
 
         response.on('end', function () {
-            res.render("popular", { movies: JSON.parse(resData), len: JSON.parse(resData).results.length })
+            res.render("popular", { movies: JSON.parse(resData) })
         });
     });
     request.end();
