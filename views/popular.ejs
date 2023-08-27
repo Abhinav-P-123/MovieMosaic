@@ -1,1 +1,129 @@
-<%- include('header'); -%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieMosaic</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&family=Rubik:wght@400;600&display=swap');
+
+        .movies-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 20px 100px;
+        }
+
+        .movie-card {
+            display: inline-flex;
+            flex-direction: row;
+            height: 10vw;
+            gap: 20px;
+            font-family: 'Rubik', sans-serif;
+        }
+
+        .movie-card>img {
+            border-radius: 10px;
+        }
+
+        .movie-card h4 {
+            margin-top: 10px;
+            margin-bottom: 1px;
+            width: 20ch;
+            color: #4F29F0
+        }
+
+        .release-date {
+            margin: 1px;
+            font-size: 0.8rem;
+            color: #4F29F0
+        }
+
+        .movie-card {
+            background-color: transparent
+        }
+
+        .more {
+            background-color: transparent;
+            border: 1px solid #4F29F0;
+            border-radius: 0.2rem;
+            max-width: 90px;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 0px;
+            padding: 10px 10px;
+            text-align: center;
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-decoration: none;
+            color: #4F29F0;
+            cursor: pointer;
+            transition: ease-out 0.5s;
+            border-radius: 10px;
+            box-shadow: inset 0 0 0 0 #4F29F0;
+        }
+
+        .movie-card>div {
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .more:hover {
+            color: white;
+            box-shadow: inset 0 -100px 0 0 #4F29F0;
+        }
+
+        .more:active {
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('header'); -%>
+
+        <div class="movies-container">
+            <% for (let x=0; x < movies.results.length; x++ ) { %>
+                <div class="movie-card">
+                    <img src="https://image.tmdb.org/t/p/w500<%= movies.results[x].poster_path %>" />
+                    <div>
+                        <div>
+                            <h4>
+                                hello
+                                <%= movies.results[x].original_title %>
+                            </h4>
+                            <p class="release-date">
+                                <%= movies.results[x].release_date %>
+                            </p>
+                        </div>
+                        <button class="more">
+                            More
+                        </button>
+                    </div>
+                </div>
+                <% } %>
+                    <div class="movie-card">
+                        <img src="https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" />
+                        <div>
+                            <div>
+                                <h4>
+                                    hello
+
+                                </h4>
+                                <p class="release-date">
+                                    hello
+                                </p>
+                            </div>
+                            <button class="more">
+                                More
+                            </button>
+                        </div>
+                    </div>
+        </div>
+</body>
+
+</html>
