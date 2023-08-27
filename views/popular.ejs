@@ -88,24 +88,23 @@
     <%- include('header'); -%>
         <h3 style="font-family: 'Rubik', sans-serif; color: #fff;margin-left: 100px;margin-bottom: 0px;">Trending</h1>
             <div class="movies-container">
-                <% for (let x=0; x < movies.results.length; x++ ) { %>
-                    <div class="movie-card">
-                        <img src="https://image.tmdb.org/t/p/w500<%= movies.results[x].poster_path %>" />
+                <div class="movie-card">
+                    <img src="https://image.tmdb.org/t/p/w500<%= movies.results[x].poster_path %>" />
+                    <div>
                         <div>
-                            <div>
-                                <h4>
-                                    <%= movies.results[x].original_title %>
-                                </h4>
-                                <p class="release-date">
-                                    <%= movies.results[x].release_date %>
-                                </p>
-                            </div>
-                            <button class="more">
-                                More
-                            </button>
+                            <h4>
+                                <%= movies.results[x].original_title %>
+                            </h4>
+                            <p class="release-date">
+                                <%= movies.results[x].release_date %>
+                            </p>
                         </div>
+                        <button class="more">
+                            More
+                        </button>
                     </div>
-                    <% } %>
+                </div>
+                <% } %>
             </div>
 </body>
 
