@@ -9,23 +9,25 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&family=Rubik:wght@400;600&display=swap');
 
         .movies-container {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-rows: repeat(auto-fit, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 1rem;
+            box-sizing: border-box;
+            width: 100vw;
             padding: 20px 100px;
         }
 
         .movie-card {
             display: inline-flex;
             flex-direction: row;
-            height: 10vw;
             gap: 20px;
             font-family: 'Rubik', sans-serif;
         }
 
         .movie-card>img {
             border-radius: 10px;
+            height: 10rem;
         }
 
         .movie-card h4 {
@@ -42,7 +44,7 @@
         }
 
         .movie-card {
-            background-color: #404258;
+            background-color: #1f2a40;
             border-radius: 10px;
         }
 
@@ -52,7 +54,6 @@
             border-radius: 0.2rem;
             max-width: 90px;
             cursor: pointer;
-            position: relative;
             display: inline-block;
             margin-bottom: 10px;
             padding: 10px 10px;
@@ -81,17 +82,166 @@
         .more:active {
             transform: scale(0.9);
         }
+
+        .rating {
+            display: inline-flex;
+            padding: 2px;
+            border-radius: 2px;
+            margin-top: 0px;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .trending-title {
+            font-family: 'Rubik', sans-serif;
+            color: #fff;
+            margin-left: 100px;
+            margin-bottom: 0px;
+        }
+
+        .logo {
+            display: none;
+            height: 2rem;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
+
+        .more-info {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.1);
+            transition: transform 1s, top 1s, display 1s;
+            display: none
+        }
+
+        .open-popup {
+
+            display: block;
+            transform: translate(-50%, 10%) scale(1);
+
+        }
+
+        .poster-and-otherinfo {
+            display: inline-flex;
+            padding: 1rem;
+            background-color: #1f2a40;
+            border-radius: 10px;
+            gap: 1rem;
+            margin: 10px;
+            align-items: top;
+        }
+
+        .poster-and-otherinfo>img {
+            width: 220px;
+            height: 290px;
+            border-radius: 10px;
+        }
+
+        .poster-and-otherinfo>div {
+            height: 240px;
+
+        }
+
+        .poster-and-otherinfo h1 {
+            font-size: 2rem;
+            width: 20ch;
+            font-family: 'Rubik';
+            margin-bottom: 10px;
+            margin-top: 0;
+            color: #fff
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            margin-top: 1rem;
+            font-family: 'Rubik';
+            font-style: italic;
+            margin-bottom: 0px;
+            color: #fff
+        }
+
+        .popup-releaseData {
+            font-family: 'Rubik';
+            font-size: 1.4rem;
+            margin-top: 1rem;
+            color: #fff;
+            margin-bottom: 1rem
+        }
+
+        .blur-effect {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        @media (max-width: 1940px) {
+            .movies-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 1471px) {
+            .movies-container {
+                grid-template-columns: repeat(2, 0.8fr);
+            }
+        }
+
+        @media (max-width: 1071px) {
+
+            .movie-card h4 {
+                width: 14ch
+            }
+        }
+
+        @media (max-width: 900px) {
+            .movies-container {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        @media (max-width: 819px) {
+            .logo {
+                display: inline-block;
+            }
+
+            .full-logo {
+                display: none;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .movies-container {
+                padding: 10px 1rem;
+            }
+
+            .trending-title {
+                margin-left: 1rem
+            }
+
+            header {
+                padding: 1rem 1rem
+            }
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
     <%- include('header'); -%>
-        <h3 style="font-family: 'Rubik', sans-serif; color: #fff;margin-left: 100px;margin-bottom: 0px;">Trending</h1>
+        <h3 class="trending-title">Trending</h1>
             <div class="movies-container">
                 <% for (let x=0; x < 20; x++ ) { %>
                     <div class="movie-card">
                         <img src="https://image.tmdb.org/t/p/w500<%= movies.results[x].poster_path %>" />
-                        <div>
+                        <div style="display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;">
                             <div>
                                 <h4>
                                     <%= movies.results[x].original_title %>
@@ -99,6 +249,13 @@
                                 <p class="release-date">
                                     <%= movies.results[x].release_date %>
                                 </p>
+                                <div class="rating">
+                                    <i class="fa-solid fa-star fa-sm"
+                                        style="color: #fff; position:relative; bottom: 2px"></i>
+                                    <span style="padding: 0px; margin: 0px; color: #fff">
+                                        <%= movies.results[x].vote_average %>
+                                    </span>
+                                </div>
                             </div>
                             <button class="more">
                                 More
@@ -107,6 +264,38 @@
                     </div>
                     <% } %>
             </div>
+            <div class="more-info">
+                <div class="poster-and-otherinfo">
+                    <img src="https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" />
+                    <div>
+                        <h1 class="popup-title" id=""></h1>
+                        <p class="tagline">Tagline is a kind like quote</p>
+                        <p class="popup-releaseData" id="popup-releaseData"></p>
+                        <div class="rating">
+                            <i class="fa-solid fa-star fa-sm" style="color: #fff; position:relative; bottom: 2px"></i>
+                            <span style="padding: 0px; margin: 0px; color: #fff" class="rating-data"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                // Get the middle-div element
+                const middleDiv = document.querySelector('.more-info');
+
+                // Function to position and show the middle-div
+                function positionMiddleDiv(movie) {
+                    const windowHeight = window.innerHeight;
+                    const middleDivHeight = middleDiv.clientHeight;
+                    document.querySelector(".popup-title").textContent = movie.title
+                    document.querySelector(".popup-releaseData").textContent = movie.releaseDate
+                    document.querySelector(".rating-data").textContent = movie.rating
+                    const topPosition = (windowHeight - middleDivHeight) / 4;
+                    middleDiv.style.top = `${topPosition}px`;
+                    middleDiv.classList.add("open-popup")
+                }
+
+                window.addEventListener('resize', positionMiddleDiv);
+            </script>
 </body>
 
 </html>
